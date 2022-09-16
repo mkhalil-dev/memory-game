@@ -3,7 +3,7 @@ bgImgs = []; //array for selection validation
 counter = 0; //counter for the amount of gotten right
 time = 1000; // timer
 score = 0; //score counter
-level = 1; //level counter
+level = 0; //level counter
 fail = 0;
 
 //Create an array of 6 items of the 3 coding languages
@@ -86,7 +86,7 @@ function check(i){
                 time = time/1.25;
             }
             console.log(time)
-            setTimeout(reset, 1500);
+            setTimeout(reset, 1200);
         }
     }
     //2 Tries
@@ -99,7 +99,8 @@ function check(i){
 
     // if failed reset the whole box
     else{
-        level = 1;
+        level = 0;
+        fail = 0;
         score -= 3;
         time = 1000;
         setTimeout(reset, 500);
@@ -111,7 +112,6 @@ function reset(){
     document.getElementById("level").innerText = level;
     document.getElementById("score").innerText = score;
     counter = 0;
-    fail = 0;
     array = shuffle();
     bgImgs = [];
     document.querySelectorAll(".posdiv").forEach((item) => {
