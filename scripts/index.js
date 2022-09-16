@@ -1,14 +1,12 @@
-
 //Create an array of 6 items of the 3 coding languages
-let arr = [];
+function shuffle() {
+    let array = [];
+    for (let i = 0; i<2; i++){
+        array.push('php')
+        array.push('html')
+        array.push('js')
+    }
 
-for (let i = 0; i<2; i++){
-    arr.push('php')
-    arr.push('html')
-    arr.push('js')
-}
-
-function shuffle(array) {
     let currentIndex = array.length,  randomIndex;
   
     // While there remain elements to shuffle.
@@ -25,14 +23,21 @@ function shuffle(array) {
     return array;
 }
 
-console.log(document.querySelectorAll(".posdiv"))
-console.log(document.querySelectorAll(".pos")[0].src="assets/htmllogo.png")
+let array = shuffle();
+
+let eventlistener = (box, i) => {
+    // Adding event listners to all the divs
+    box.addEventListener("click", function(){
+        revealimg(array, i)
+    })
+}
+
+//Select all the divs of the game
 document.querySelectorAll(".posdiv").forEach((item, index)=> {
     eventlistener(item,index);
 })
 
-function eventlistener(box, i){
-    box.addEventListener("click", function(){
-        console.log('hi'+i);
-    })
+function revealimg(array, i){
+    console.log(i, array[i]);
+    document.querySelectorAll(".posdiv")[i].style.backgroundImage =  `url('assets/${array[i]}logo.png')`
 }
