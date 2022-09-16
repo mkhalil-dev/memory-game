@@ -78,6 +78,7 @@ function check(i){
         bgImgs=[];
         counter++;
         if (counter == 3){
+            level ++;
             score += 5;
             if(time>32){
                 time = time/2;
@@ -89,6 +90,7 @@ function check(i){
 
     // if failed reset the whole box
     else{
+        level = 1;
         score -= 3;
         time = 1000;
         setTimeout(reset, 500);
@@ -97,6 +99,7 @@ function check(i){
 
 //Reset Game, reshuffle the array, reset the bg imgs and reset the bg box
 function reset(){
+    document.getElementById("level").innerText = level;
     document.getElementById("score").innerText = score;
     counter = 0;
     array = shuffle();
