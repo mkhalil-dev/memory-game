@@ -63,6 +63,7 @@ function revealimg(i){
         return;
     }
     clickedDiv.style.backgroundImage =  `url('assets/${array[i]}logo.png')`
+    clickedDiv.style.cursor = "auto";
     check(i)
 }
 
@@ -110,9 +111,11 @@ function reset(){
     document.getElementById("level").innerText = level;
     document.getElementById("score").innerText = score;
     counter = 0;
+    fail = 0;
     array = shuffle();
     bgImgs = [];
     document.querySelectorAll(".posdiv").forEach((item) => {
         item.style.backgroundImage = "";
+        item.style.cursor = "pointer";
     })
 }

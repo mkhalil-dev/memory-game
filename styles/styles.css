@@ -64,10 +64,10 @@ table {
     border: 1px solid;
     background-color: aliceblue;
     place-items: center;
-    cursor: pointer;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
+    cursor: pointer;
 }
 
 .container > div > div {
