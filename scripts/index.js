@@ -1,6 +1,7 @@
 
 //Create an array of 6 items of the 3 coding languages
 let arr = [];
+
 for (let i = 0; i<2; i++){
     arr.push('php')
     arr.push('html')
@@ -22,4 +23,16 @@ function shuffle(array) {
     }
   
     return array;
+}
+
+console.log(document.querySelectorAll(".posdiv"))
+console.log(document.querySelectorAll(".pos")[0].src="assets/htmllogo.png")
+document.querySelectorAll(".posdiv").forEach((item, index)=> {
+    eventlistener(item,index);
+})
+
+function eventlistener(box, i){
+    box.addEventListener("click", function(){
+        console.log('hi'+i);
+    })
 }
