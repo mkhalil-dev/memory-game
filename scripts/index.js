@@ -1,9 +1,10 @@
-let score, counter, bgImgs, level;
+let score, counter, bgImgs, level, fail;
 bgImgs = []; //array for selection validation
 counter = 0; //counter for the amount of gotten right
-time = 1000;
-score = 0;
-level = 1;
+time = 1000; // timer
+score = 0; //score counter
+level = 1; //level counter
+fail = 0;
 
 //Create an array of 6 items of the 3 coding languages
 function shuffle() {
@@ -44,7 +45,6 @@ document.querySelectorAll(".posdiv").forEach((item, index)=> {
     eventlistener(item,index);
 })
 
-flash()
 function flash(){
     document.querySelectorAll(".posdiv").forEach((item, i) => {
         item.style.backgroundImage =  `url('assets/${array[i]}logo.png')`
@@ -79,13 +79,21 @@ function check(i){
         counter++;
         if (counter == 3){
             level ++;
+            fail = 0;
             score += 5;
             if(time>32){
-                time = time/2;
+                time = time/1.25;
             }
             console.log(time)
             setTimeout(reset, 1500);
         }
+    }
+    //2 Tries
+    else if(fail == 0){
+        counter = 0;
+        fail++;
+        bgImgs=[];
+        setTimeout(flash, 500);
     }
 
     // if failed reset the whole box
@@ -107,8 +115,4 @@ function reset(){
     document.querySelectorAll(".posdiv").forEach((item) => {
         item.style.backgroundImage = "";
     })
-    //set time out for level 2
-    setTimeout(() => {
-        flash();
-    }, 500);
 }
