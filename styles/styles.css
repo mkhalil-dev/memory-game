@@ -54,7 +54,7 @@ table {
     height: 60vh;
     grid-template-rows: 50% 50%;
     grid-template-columns: 33% auto 33%;
-    margin: 200px;
+    margin: 100px 200px 100px 200px;
 }
 
 .container div {
@@ -76,3 +76,17 @@ table {
     max-height: 80%;
 }
 
+h1{
+    color: black;
+    text-align: center;
+    font-size: 28px;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+h2{
+    color: black;
+    text-align: center;
+    font-size: 28px;
+    font-style: italic;
+}

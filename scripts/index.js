@@ -1,3 +1,7 @@
+let score, counter, bgImgs;
+bgImgs = []; //array for selection validation
+counter = 0; //counter for the amount of gotten right
+
 //Create an array of 6 items of the 3 coding languages
 function shuffle() {
     let array = [];
@@ -28,7 +32,7 @@ let array = shuffle();
 let eventlistener = (box, i) => {
     // Adding event listners to all the divs
     box.addEventListener("click", function(){
-        revealimg(array, i)
+        revealimg(i)
     })
 }
 
@@ -37,7 +41,46 @@ document.querySelectorAll(".posdiv").forEach((item, index)=> {
     eventlistener(item,index);
 })
 
-function revealimg(array, i){
-    console.log(i, array[i]);
-    document.querySelectorAll(".posdiv")[i].style.backgroundImage =  `url('assets/${array[i]}logo.png')`
+//reveal the images after click
+function revealimg(i){
+    let clickedDiv = document.querySelectorAll(".posdiv")[i]
+    if(clickedDiv.style.backgroundImage){
+        return;
+    }
+    clickedDiv.style.backgroundImage =  `url('assets/${array[i]}logo.png')`
+    check(i)
+}
+
+function check(i){
+    //Check if new set is being chosen
+    if(!bgImgs[0]){
+        bgImgs.push(array[i])
+        return true;
+    }
+    
+    // if set is selected, reset array
+    if(array[i] == bgImgs.at(-1)){
+        bgImgs=[];
+        counter++;
+        if (counter == 3){
+            let myTimeout = setTimeout(reset, 1500);
+            myTimeout()
+        }
+    }
+
+    // if failed reset the whole box
+    else{
+        let myTimeout = setTimeout(reset, 500);
+        myTimeout()
+    }
+};
+
+//Reset Game, reshuffle the array, reset the bg imgs and reset the bg box
+function reset(){
+    counter = 0;
+    array = shuffle();
+    bgImgs = [];
+    document.querySelectorAll(".posdiv").forEach((item) => {
+        item.style.backgroundImage = "";
+    })
 }
