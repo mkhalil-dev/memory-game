@@ -1,6 +1,9 @@
-let score, counter, bgImgs;
+let score, counter, bgImgs, level;
 bgImgs = []; //array for selection validation
 counter = 0; //counter for the amount of gotten right
+time = 1000;
+score = 0;
+level = 1;
 
 //Create an array of 6 items of the 3 coding languages
 function shuffle() {
@@ -41,6 +44,18 @@ document.querySelectorAll(".posdiv").forEach((item, index)=> {
     eventlistener(item,index);
 })
 
+flash()
+function flash(){
+    document.querySelectorAll(".posdiv").forEach((item, i) => {
+        item.style.backgroundImage =  `url('assets/${array[i]}logo.png')`
+    });
+    setTimeout(() => {
+        document.querySelectorAll(".posdiv").forEach((item, i) => {
+            item.style.backgroundImage =  "";
+        });
+    }, time);
+}
+
 //reveal the images after click
 function revealimg(i){
     let clickedDiv = document.querySelectorAll(".posdiv")[i]
@@ -63,24 +78,34 @@ function check(i){
         bgImgs=[];
         counter++;
         if (counter == 3){
-            let myTimeout = setTimeout(reset, 1500);
-            myTimeout()
+            score += 5;
+            if(time>32){
+                time = time/2;
+            }
+            console.log(time)
+            setTimeout(reset, 1500);
         }
     }
 
     // if failed reset the whole box
     else{
-        let myTimeout = setTimeout(reset, 500);
-        myTimeout()
+        score -= 3;
+        time = 1000;
+        setTimeout(reset, 500);
     }
 };
 
 //Reset Game, reshuffle the array, reset the bg imgs and reset the bg box
 function reset(){
+    document.getElementById("score").innerText = score;
     counter = 0;
     array = shuffle();
     bgImgs = [];
     document.querySelectorAll(".posdiv").forEach((item) => {
         item.style.backgroundImage = "";
     })
+    //set time out for level 2
+    setTimeout(() => {
+        flash();
+    }, 500);
 }
